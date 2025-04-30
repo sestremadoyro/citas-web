@@ -1,0 +1,51 @@
+// Body
+$body-bg: #f8fafc;
+
+
+// Typography
+@font-face {
+    font-family: fonts1;
+    src: url(./fonts/SeatBcn-Regular.otf);
+}
+
+// Typography
+@font-face {
+    font-family: fonts2;
+    src: url(./fonts/SeatBcn-Black.otf);
+}
+
+
+// Typography
+@font-face {
+    font-family: fonts3;
+    src: url(./fonts/SeatBcn-Medium.otf);
+}
+
+// Typography
+@font-face {
+    font-family: fonts4;
+    src: url(./fonts/SEATBCN-Light.woff);
+}
+
+$font-family-sans-serif: fonts1!important;
+$font-family: fonts1!important;
+
+$font-family2: fonts2!important;
+
+$font-family3: fonts3!important;
+
+$font-family4: fonts4!important;
+
+$font-size-base: 0.9rem;
+$line-height-base: 1.6;
+// Colors
+$blue: #0f0f0f;
+$indigo: #6574cd;
+$purple: #9561e2;
+$pink: #f66d9b;
+$red: #e3342f;
+$orange: #f6993f;
+$yellow: #ffed4a;
+$green: #38c172;
+$teal: #4dc0b5;
+$cyan: #6cb2eb;

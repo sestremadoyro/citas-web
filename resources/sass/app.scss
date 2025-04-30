@@ -1,0 +1,34 @@
+
+
+/*Name the font-family and link the font file in the @font-face rule*/
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+
+// FontAwesome
+//@import '~@fortawesome/fontawesome-free/css/all.css';
+
+//@import '../libs/bootstrap/dist/css/bootstrap.min.css';
+@import '../libs/loaders.css/loaders.min.css';
+@import '../libs/iconsmind/iconsmind.css';
+
+@import '../libs/hamburgers/dist/hamburgers.min.css';
+@import '../libs/font-awesome/css/font-awesome.min.css';
+@import '../libs/owl.carousel/dist/assets/owl.carousel.min.css';
+@import '../libs/owl.carousel/dist/assets/owl.theme.default.min.css';
+
+@import '../libs/remodal/dist/remodal.css';
+@import '../libs/remodal/dist/remodal-default-theme.css';
+@import '../libs/flexslider/flexslider.css';
+@import '../libs/lightbox2/dist/css/lightbox.css';
+@import '../sass/custom-web/style.scss';
+@import '../sass/custom-web/custom.scss';
+
+//@import './web/components';
+
+@import "../libs/Select2/select2.min.css";
+@import "../libs/Select2/select2-bootstrap4.css";

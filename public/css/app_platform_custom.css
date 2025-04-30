@@ -1,0 +1,62 @@
+/* @font-face {
+    font-family: myFirstFont;
+    src: url(../SEATBCN-Light.woff);
+}
+
+$font-family-sans-serif: myFirstFont!important;
+$font-family: myFirstFont!important; */
+body {
+  font-size: 0.8rem;
+}
+
+.loading-custom {
+  background-color: #1921815d;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  padding-top: 40vh;
+  z-index: 10;
+}
+.loading-custom .spinner-border {
+  width: 60px;
+  height: 60px;
+  border: 10px solid #fff;
+  border-right-color: transparent;
+  display: block;
+}
+
+.spinner-border {
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  vertical-align: text-bottom;
+  border: 0.25em solid;
+  border-right: 0.25em solid transparent;
+  border-radius: 50%;
+  -webkit-animation: spinner-border 0.75s linear infinite;
+  animation: spinner-border 0.75s linear infinite;
+}
+
+#sidebar-menu a.nav-link.active {
+  border-right: 4px solid #190f14;
+}
+
+.bg-dark {
+  background-color: #33302E !important;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  border-bottom: 3px solid #190f14 !important;
+  background-color: transparent !important;
+  color: #190f14 !important;
+  border-radius: initial !important;
+}
+
+.pac-container {
+  z-index: 100000 !important;
+}
+
+.table-scrollable {
+  overflow-y: scroll;
+  height: 450px;
+}
