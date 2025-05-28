@@ -70,6 +70,8 @@ Route::get('/inicio/banner_repuestos', [DshHomeController::class, 'banner_parts'
 
 Route::get('/inicio/transparencia', [DshHomeController::class, 'transparency'])->name('transparency.home');
 
+Route::get('/inicio/mantenimiento', [DshHomeController::class, 'maintenance'])->name('maintenance.home');
+
 #Beneficios
 Route::get('/beneficios/banner_principal', [DshBeneficesController::class, 'banner_primary'])->name('banner_primary.benefices');
 

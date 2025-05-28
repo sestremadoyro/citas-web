@@ -49,7 +49,7 @@
                     $("#ddlVersion").select2({
                         data: data.map(item => {
                             return {
-                                id: item.id,
+                                id: item.detail_id,
                                 text: item.version
                             };
                         }),
@@ -65,7 +65,7 @@
                     $("#ddlDeliveryYear").select2({
                         data: data.map(item => {
                             return {
-                                id: item.id,
+                                id: item.delivery_year,
                                 text: item.delivery_year
                             };
                         }),
@@ -149,7 +149,7 @@
                         $("#ddlDeliveryYear").val(null).trigger("change").prop("disabled", false);
                         $("#ddlMileage").val(null).trigger("change").prop("disabled", true);
 
-                        let version = _resources.version.filter(i => i.id == $(this).val())[0];
+                        let version = _resources.version.filter(i => i.detail_id == $(this).val())[0];
 
                         _resources.delivery = version.delivery;
 
@@ -162,7 +162,7 @@
                         $("#showDeliveryYear").html(valorDeliveryYear);
 
                         $("#ddlMileage").val(null).trigger("change").prop("disabled", false);
-                        let delivery = _resources.delivery.filter(i => i.id == $(this).val())[0];
+                        let delivery = _resources.delivery.filter(i => i.delivery_year == $(this).val())[0];
                         _private.fillMileage(delivery.mileage);
 
                     });

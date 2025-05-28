@@ -2490,6 +2490,119 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 /***/ }),
 
+/***/ "./resources/js/components/home/maintenance.js":
+/*!*****************************************************!*\
+  !*** ./resources/js/components/home/maintenance.js ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+(function (trackadmin, $, global) {
+  var maintenance = function maintenance(options) {
+    var _settings = {},
+        _resources = {
+      statusMant: "VIEW",
+      formPrimary: '#form_maintenance'
+    },
+        _controls = {
+      $tableSearch: null
+    },
+        _private = {
+      initializeControls: function initializeControls() {
+        $(_resources.formPrimary).validate(trackadmin["public"].utils.formRulesValidate(true));
+      },
+      loadDataToSave: function loadDataToSave() {
+        var data1 = {
+          id: $("#section1_id").val(),
+          title: $("#section1_title").val(),
+          description: $("#txtDescription1").val()
+        };
+        var data2 = {
+          id: $("#section2_id").val(),
+          title: $("#section2_title").val(),
+          description: $("#txtDescription2").val()
+        };
+        var sections = [];
+        sections.push(data1);
+        sections.push(data2);
+        var formData = $(_resources.formPrimary).serializeArray();
+        var generateData = {};
+        formData.filter(function (i) {
+          generateData[i.name] = i.value.trim();
+        });
+        generateData.group = "home";
+        generateData.page = "maintenance";
+        generateData.sections = sections;
+        console.info(generateData, 'generateData');
+        return generateData;
+      },
+      bindEvents: function bindEvents() {
+        $("#btn-save").on("click", function () {
+          var dataSave = _private.loadDataToSave();
+
+          var validate = $(_resources.formPrimary).valid();
+
+          if (validate) {
+            global.utils.confirm({
+              title: trackadmin["public"].messages.general.TITLE_SAVE,
+              message: trackadmin["public"].messages.general.CONFIRM_TO_SAVE,
+              funcYes: function funcYes() {
+                global.utils.showLoader();
+                trackadmin["public"].api.sections.save(dataSave).then(function (item) {
+                  global.utils.hideLoader();
+                  global.utils.showNotyInLineSuccess($("#mant-message"), trackadmin["public"].messages.general.CONFIRM_INFO_SAVED);
+                });
+              }
+            });
+          }
+        });
+      },
+      init: function () {
+        var _init = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+            while (1) {
+              switch (_context.prev = _context.next) {
+                case 0:
+                  $.extend(_settings, options || {}); //global.utils.showLoader();
+
+                  _private.initializeControls();
+
+                  _private.bindEvents();
+
+                case 3:
+                case "end":
+                  return _context.stop();
+              }
+            }
+          }, _callee);
+        }));
+
+        function init() {
+          return _init.apply(this, arguments);
+        }
+
+        return init;
+      }()
+    };
+
+    _private.init();
+  };
+
+  trackadmin["public"] = trackadmin["public"] || {};
+  trackadmin["public"].maintenance = maintenance;
+})(window.trackadmin = window.trackadmin || {}, $, window.global = window.global || {});
+
+/***/ }),
+
 /***/ "./resources/js/components/home/transparency.js":
 /*!******************************************************!*\
   !*** ./resources/js/components/home/transparency.js ***!
@@ -4249,6 +4362,8 @@ __webpack_require__(/*! ../components/home/fast_guide.js */ "./resources/js/comp
 __webpack_require__(/*! ../components/home/banner_parts.js */ "./resources/js/components/home/banner_parts.js");
 
 __webpack_require__(/*! ../components/home/transparency.js */ "./resources/js/components/home/transparency.js");
+
+__webpack_require__(/*! ../components/home/maintenance.js */ "./resources/js/components/home/maintenance.js");
 
 __webpack_require__(/*! ../components/config/detail.js */ "./resources/js/components/config/detail.js");
 

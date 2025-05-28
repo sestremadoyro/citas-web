@@ -8,6 +8,7 @@ $home = [
     'Guía rapida' => 'fast_guide.home',
     'Banner Repuestos' => 'banner_parts.home',
     'Transparencia' => 'transparency.home',
+    'Consulta Mantenimiento' => 'maintenance.home',
 ];
 
 $benefices = [

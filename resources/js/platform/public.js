@@ -12,6 +12,7 @@ require('../components/home/banner_primary.js');
 require('../components/home/fast_guide.js');
 require('../components/home/banner_parts.js');
 require('../components/home/transparency.js');
+require('../components/home/maintenance.js');
 
 require('../components/config/detail.js');
 require('../components/config/vehicle.js');

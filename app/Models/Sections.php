@@ -9,7 +9,9 @@ class Sections extends Model
     protected $table = 'sections';
 
     protected $fillable = [
-        
+        'content_id',
+        'title',
+        'description',        
     ];
 
     /* public static function getSubscriptions(){

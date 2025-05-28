@@ -9,7 +9,8 @@ class Contents extends Model
     protected $table = 'contents';
 
     protected $fillable = [
-        
+        'group',
+        'page'
     ];
 
     /* public static function getSubscriptions(){
@@ -17,4 +18,19 @@ class Contents extends Model
         $subscriptions = DB::connection('redagilelatam-logistic')->select($query);
         return $subscriptions;
     } */
+
+    public function sections()
+    {
+        return $this->hasMany(Sections::class, 'content_id');
+    }
+
+    public function scopeFindByPage($query, $group, $page)
+    {
+        $content = $query->where('group', $group)->where('page', $page)->with(['sections'])->first();
+        if (!$content) {
+            $content = $query->create(['group' => $group, 'page' => $page]);
+        }       
+
+        return $content;
+    }   
 }

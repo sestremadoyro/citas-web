@@ -55,6 +55,25 @@ class DshHomeController extends Controller
 
     }
 
+    public function maintenance()
+    {
+        $maintenance = Contents::findByPage("home", "maintenance");
+        $section1 = $maintenance->sections->first();
+        $section2 = $maintenance->sections->skip(1)->first();  
+
+        if ($maintenance->sections->isEmpty() || $maintenance->sections->count() < 2) {
+            if ($maintenance->sections->count() == 0 && $section1 == null) {
+                $section1 = $maintenance->sections()->create(['content_id' => $maintenance->id, 'title' => '¿Cuánto Costaría?', 'description' => 'Los repuestos más el costo de mantenimiento te estaría costando S/{costo} soles']);
+            }
+            if ($maintenance->sections->count() == 1 && $section2 == null) {
+                $section2 = $maintenance->sections()->create(['content_id' => $maintenance->id, 'title' => '¿Cuánto tiempo demora?', 'description' => 'El tiempo aproximado para el mantenimiento en el taller es de {horas} horas laborales.']);
+            }            
+        }
+
+        return view('pages/platform/home/maintenance',compact('maintenance','section1','section2'));
+
+    }
+
     public function perfil()
     {
         $perfil = Contents::all();
