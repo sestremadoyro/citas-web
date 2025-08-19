@@ -81,7 +81,7 @@ class PublicApiController extends Controller
             $section1 = $maintenance->sections->first();
             $section2 = $maintenance->sections->skip(1)->first();
 
-            if ($data) {
+            if ($data && isset($data->precioTotal)) {
                 if ($data && $data->precioTotal && $section1 && $section1->description) {
                     preg_match('/\d+(\.\d+)?/', $data->precioTotal, $matches);
                     $monto = round($matches[0] ?? 0, 2);
