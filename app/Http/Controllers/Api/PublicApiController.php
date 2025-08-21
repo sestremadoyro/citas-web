@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\AutoPart;
 use App\Models\Contents;
 use Illuminate\Http\Request;
 use App\Models\Workshops;
@@ -96,15 +97,28 @@ class PublicApiController extends Controller
 
                 if ($data && isset($data->repuestos)) {
                     $repuestos = [];
-                    foreach ($data->repuestos as $key => $repuesto) {
-                        $repuestos[] = [
-                            'codigo' => $repuesto->CdgImputacion,
-                            'nombre' => $repuesto->ImputacionDn,
-                            'descripcion' => $repuesto->descripcion,
-                            'precio' => $repuesto->PVP,
-                            'cantidad' => $repuesto->Unidades,
-                            'enlaceImagen' => ($repuesto->enlaceImagen == "Sin Imagen" ? null : $repuesto->enlaceImagen),
-                        ];
+                    foreach ($data->repuestos as $repuesto) {
+                        $part = AutoPart::getByCode($repuesto->CdgImputacion);
+                        if ($part) {
+                            $part->update([
+                                'precio' => $repuesto->PVP,
+                                'cantidad' => $repuesto->Unidades,
+                            ]);
+                        } else {
+                            $part = AutoPart::create([
+                                'codigo' => $repuesto->CdgImputacion,
+                                'nombre' => $repuesto->ImputacionDn,
+                                'descripcion' => $repuesto->descripcion,
+                                'precio' => $repuesto->PVP,
+                                'cantidad' => $repuesto->Unidades,
+                                'enlaceImagen' => ($repuesto->enlaceImagen == "Sin Imagen" ? null : $repuesto->enlaceImagen),
+                            ]);
+                        }
+                        
+                        $item = $part->toArray();
+                        $item['enlaceImagen'] = $part->enlace_imagen;
+
+                        $repuestos[] = $item;
                     }
                     $data->repuestos = $repuestos;
                 }
