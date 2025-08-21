@@ -111,7 +111,7 @@ class PublicApiController extends Controller
                                 'descripcion' => $repuesto->descripcion,
                                 'precio' => $repuesto->PVP,
                                 'cantidad' => $repuesto->Unidades,
-                                'enlaceImagen' => ($repuesto->enlaceImagen == "Sin Imagen" ? null : $repuesto->enlaceImagen),
+                                'enlace_imagen' => ($repuesto->enlaceImagen == "Sin Imagen" ? null : $repuesto->enlaceImagen),
                             ]);
                         }
                         
