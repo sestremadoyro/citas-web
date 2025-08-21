@@ -81,17 +81,32 @@ class PublicApiController extends Controller
             $section1 = $maintenance->sections->first();
             $section2 = $maintenance->sections->skip(1)->first();
 
-            if ($data && isset($data->precioTotal)) {
-                if ($data && $data->precioTotal && $section1 && $section1->description) {
+            if ($data) {
+                if ($data && isset($data->precioTotal) && $data->precioTotal && $section1 && $section1->description) {
                     preg_match('/\d+(\.\d+)?/', $data->precioTotal, $matches);
                     $monto = round($matches[0] ?? 0, 2);
                     $data->precioTotal = str_replace('{costo}', $monto, $section1->description);                    
                 }
 
-                if ($data && $data->tiempoTotal && $section2 && $section2->description) {
+                if ($data && isset($data->tiempoTotal)  && $data->tiempoTotal && $section2 && $section2->description) {
                     preg_match('/\d+(\.\d+)?/', $data->tiempoTotal, $matches);
                     $monto = round($matches[0] ?? 0, 2);
                     $data->tiempoTotal = str_replace('{horas}', $monto, $section2->description);     
+                }
+
+                if ($data && isset($data->repuestos)) {
+                    $repuestos = [];
+                    foreach ($data->repuestos as $key => $repuesto) {
+                        $repuestos[] = [
+                            'codigo' => $repuesto->CdgImputacion,
+                            'nombre' => $repuesto->ImputacionDn,
+                            'descripcion' => $repuesto->descripcion,
+                            'precio' => $repuesto->PVP,
+                            'cantidad' => $repuesto->Unidades,
+                            'enlaceImagen' => ($repuesto->enlaceImagen == "Sin Imagen" ? null : $repuesto->enlaceImagen),
+                        ];
+                    }
+                    $data->repuestos = $repuestos;
                 }
             }
 
