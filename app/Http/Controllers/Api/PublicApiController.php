@@ -97,9 +97,9 @@ class PublicApiController extends Controller
 
                 if ($data && isset($data->repuestos)) {
                     $repuestos = [];
-                    foreach ($data->repuestos as $repuesto) {
-                        $part = AutoPart::getByCode($repuesto->CdgImputacion);
-                        if ($part) {
+                    foreach ($data->repuestos as $repuesto) {                        
+                        if (AutoPart::existsByCode($repuesto->CdgImputacion)) {
+                            $part = AutoPart::getByCode($repuesto->CdgImputacion);
                             $part->update([
                                 'precio' => $repuesto->PVP,
                                 'cantidad' => $repuesto->Unidades,
@@ -115,10 +115,9 @@ class PublicApiController extends Controller
                             ]);
                         }
                         
-                        $item = $part->toArray();
-                        $item['enlaceImagen'] = $part->enlace_imagen;
+                        $part['enlaceImagen'] = $part->enlace_imagen;
 
-                        $repuestos[] = $item;
+                        $repuestos[] = $part;
                     }
                     $data->repuestos = $repuestos;
                 }

@@ -24,6 +24,12 @@ class AutoPart extends Model
         'cantidad' => 'integer',
     ];
 
+
+    public function scopeExistsByCode($query, $code)
+    {
+        return $query->where('codigo', $code)->exists();
+    }
+
     public function scopeGetByCode($query, $code)
     {
         return $query->where('codigo', $code)->first();
