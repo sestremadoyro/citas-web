@@ -20,7 +20,7 @@ class AutoPart extends Model
     ];
 
     protected $casts = [
-        'precio' => 'decimal:2',
+        'precio' => 'float',
         'cantidad' => 'integer',
     ];
 
