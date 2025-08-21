@@ -20,8 +20,8 @@ class CreateAutoPartsTables extends Migration
             $table->text('descripcion')->nullable();
             $table->decimal('precio', 10, 2)->default(0.00);
             $table->integer('cantidad')->default(0);
-            $table->string('enlace_imagen', 512);
-            $table->string('imagen', 512);
+            $table->string('enlace_imagen', 512)->nullable();
+            $table->string('imagen', 512)->nullable();
             $table->timestamps();
         });
     }
