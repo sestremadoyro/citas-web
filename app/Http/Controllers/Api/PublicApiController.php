@@ -103,6 +103,8 @@ class PublicApiController extends Controller
                             $part->update([
                                 'precio' => $repuesto->PVP,
                                 'cantidad' => $repuesto->Unidades,
+                                'descripcion' => $repuesto->descripcion,
+                                'enlace_imagen' => ($repuesto->enlaceImagen == "Sin Imagen" ? null : $repuesto->enlaceImagen),
                             ]);
                         } else {
                             $part = AutoPart::create([
